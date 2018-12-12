@@ -1,0 +1,252 @@
+
+.errorMessage.shown{
+    height: 400px;
+    margin-top: -200px;
+    transition: all 1s;
+}
+
+.errorMessage{
+    position: absolute;
+    height: 0;
+    overflow: hidden;
+    left: 0; right: 0;
+    top: 50%;
+    background: #050505;
+    border-top: 3px solid red;
+    border-bottom: 3px solid red;
+    box-sizing: border-box;
+    padding: 8px;
+}
+.errorMessage h3{
+    text-align: center;
+    padding: 8px 0;
+}
+.errorMessage p{
+    font-size: 12pt;
+    padding-bottom: 8px;
+}
+.errorMessage textarea{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    height: 200px;
+    background: black;
+    color: white;
+    border: 0;
+    margin-bottom: 8px;
+}
+.errorMessage a{
+    color: #0078a3;
+}
+
+.gameOverlayBox.shown{
+    opacity: 1;
+    height: 200px;
+    margin-top: -100px;
+
+}
+.gameOverlayBox{
+    transition: all 0.2s;
+    position: absolute;
+    height: 0;
+    overflow: hidden;
+    left: 0; right: 0;
+    top: 50%;
+    background: #050505;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    box-sizing: border-box;
+    padding: 8px;
+    text-align: center;
+    opacity: 0;
+}
+
+.gameOverlayBox h3{
+    text-align: center;
+    padding: 8px 0;
+    margin: 0 !important;
+}
+.gameOverlayBox p{
+    font-size: 12pt;
+    padding-bottom: 8px;
+}
+.gameOverlayBox textarea{
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    height: 200px;
+    background: black;
+    color: white;
+    border: 0;
+    margin-bottom: 8px;
+}
+
+.gameOverlayBox textarea[readonly]{
+    color: #888;
+}
+
+.gameOverlayBox a{
+    color: #0078a3;
+}
+
+.gameOverlayBox input{
+    font-size: 12pt;
+    padding: 8px;
+}
+
+
+
+
+.indiegogoMessage.shown{
+    height: 400px;
+    margin-top: -200px;
+}
+
+.saveMessage.shown{
+    height: 400px;
+    margin-top: -200px;
+}
+
+.gameOverlayBox.saveMessage textarea{
+    height: 100px;
+}
+
+
+a.indiegogo.logo {
+    display: inline-block;
+    width: 442px;
+    height: 244px;
+    background: url(img/indiegogo-logo.png) no-repeat;
+}
+a.indiegogo.logo span{
+    display: none;
+}
+
+.gamecodeMessage.shown{
+    height: 100px;
+    margin-top: -50px;
+}
+
+.twitterMessage.shown{
+    height: 400px;
+    margin-top: -200px;
+}
+
+.twitterMessage li{
+    padding: 3px 0;
+}
+
+.twitterMessage ul{
+    padding-bottom: 10px;
+}
+
+.twitterMessage a{
+    text-decoration: none;
+}
+
+
+.screenshotMessage.shown{
+    height: 400px;
+    margin-top: -200px;
+}
+.screenshotMessage img{
+    height: 320px;
+}
+
+
+.bigButton, .biggerButton{
+    background: url(img/button1.png);
+    padding: 10px 16px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16pt;
+    display: inline-block;
+    margin: 0 8px 8px 8px;
+    width: 232px;
+    height: 45px;
+    box-sizing: border-box;
+}
+.bigButton:hover, .biggerButton:hover{
+    background-position: 0 -64px;
+    text-decoration: none;
+    color: white;
+}
+.bigButton:active, .biggerButton:active, .bigButton:visited, .biggerButton:visited{
+    color: white;
+}
+
+.biggerButton{
+    background: url(img/button2.png);
+    width: 300px;
+}
+
+@media (max-width: 639px) {
+    .biggerButton{
+        width: 250px;
+        background-size: 250px auto;
+        height: 40px;
+        font-size: 12pt;
+    }
+    .biggerButton:hover{
+        background-position: 0 -53px;
+    }
+}
+
+#game.cursorSize1 {
+    cursor: url(img/cursor-1.png) 0 0, default;
+}
+#game.cursorSize2 {
+    cursor: url(img/cursor-2.png) 0 0, default;
+}
+#game.cursorSize3 {
+    cursor: url(img/cursor-3.png) 0 0, default;
+}
+#game.cursorSize4 {
+    cursor: url(img/cursor-4.png) 0 0, default;
+}
+#game.cursorSize5 {
+    cursor: url(img/cursor-5.png) 0 0, default;
+}
+
+
+#game.none {
+    cursor: none;
+}
+
+#game.cursorSize1.throw {
+    cursor: url(img/cursor-throw-1.png) 8 8, default;
+}
+#game.cursorSize2.throw {
+    cursor: url(img/cursor-throw-2.png) 16 16, default;
+}
+#game.cursorSize3.throw {
+    cursor: url(img/cursor-throw-3.png) 24 24, default;
+}
+#game.cursorSize4.throw {
+    cursor: url(img/cursor-throw-4.png) 32 32, default;
+}
+#game.cursorSize5.throw {
+    cursor: url(img/cursor-throw-5.png) 40 40, default;
+}
+
+
+
+#game.cursorSize1.melee {
+    cursor: url(img/cursor-melee-1.png) 8 8, default;
+}
+#game.cursorSize2.melee {
+    cursor: url(img/cursor-melee-2.png) 16 16, default;
+}
+#game.cursorSize3.melee {
+    cursor: url(img/cursor-melee-3.png) 24 24, default;
+}
+#game.cursorSize4.melee {
+    cursor: url(img/cursor-melee-4.png) 32 32, default;
+}
+#game.cursorSize5.melee {
+    cursor: url(img/cursor-melee-5.png) 40 40, default;
+}

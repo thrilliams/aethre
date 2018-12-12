@@ -1,0 +1,1 @@
+{"DOCTYPE":"SCALABLE_PROP_SHEET","entries":{"hologramGround":{"baseSize":{"x":24,"y":24,"z":0},"scalableX":true,"scalableY":true,"scalableStep":24,"collType":"NONE","gfx":"media\/map\/rh-interior.png","gfxBaseX":0,"gfxBaseY":488,"patterns":{"x":0,"y":0,"w":24,"h":24,"xCount":6,"yCount":1},"animFrames":[0,1,2,3,4,5],"animTime":0.1}}}

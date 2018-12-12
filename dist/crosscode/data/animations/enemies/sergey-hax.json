@@ -1,0 +1,1 @@
+{"DOCTYPE":"MULTI_DIR_ANIMATION","namedSheets":{"base":{"src":"media\/entity\/enemy\/sergey-hax.png","offX":0,"offY":0,"width":24,"height":24}},"offset":{"x":0,"y":100,"z":104},"sheet":"base","guiSprites":true,"renderMode":"lighter","dirs":"1","flipX":[0],"tileOffsets":[0],"SUB":[{"name":"idle","time":0.1,"frames":[0]}]}

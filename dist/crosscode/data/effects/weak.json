@@ -1,0 +1,1 @@
+{"DOCTYPE":"EFFECT","ANIMS":{"SUB":[]},"EFFECTS":{"light":[{"type":"BLINK_COLOR","color":"red","minAlpha":0.1,"maxAlpha":0.4,"blinkDuration":0.25,"blinkCount":-1},{"type":"LOOP_START"}]}}

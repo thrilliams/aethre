@@ -1,0 +1,1 @@
+{"DOCTYPE":"MULTI_DIR_ANIMATION","namedSheets":{"move":{"src":"media\/entity\/enemy\/baggy-kun.png","offX":0,"offY":0,"width":40,"height":48}},"sheet":"move","SUB":[{"name":"idle","dirs":"1","flipX":[0],"tileOffsets":[0],"time":1,"frames":[0]},{"name":"damage","dirs":"2","flipX":[0,1],"tileOffsets":[0,0],"time":0.066,"repeat":false,"frames":[1,2,3,2,3,2,3,2,3,2,3]}]}

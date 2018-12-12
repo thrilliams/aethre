@@ -1,0 +1,1 @@
+{"DOCTYPE":"MULTI_DIR_ANIMATION","namedSheets":{"move":{"src":"media\/entity\/enemy\/probe.png","offX":0,"offY":0,"width":32,"height":32}},"offset":{"x":0,"y":-4,"z":0},"SUB":[{"sheet":"move","dirs":"1","SUB":[{"tileOffsets":[0],"SUB":[{"name":"idle","time":0.15,"repeat":true,"frames":[0,1,2,1]}]}]}]}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CrossCode Min</title>
+  <link rel="stylesheet" type="text/css" href="impact/page/css/style.css"/>
+  <link rel="stylesheet" type="text/css" href="impact/page/css/ui-darkness/jquery-ui-1.10.2.custom.min.css"/>
+  <link rel="stylesheet" type="text/css" href="game/page/game-base.css"/>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="viewport" content="width=320, initial-scale=0.5, maximum-scale=0.5, user-scalable=0"/>
+
+  <script type="text/javascript" src="impact/page/js/aes.js" charset="utf-8"></script>
+  <script type="text/javascript" src="impact/page/js/seedrandom.js" charset="utf-8"></script>
+  <script type="text/javascript" src="impact/page/js/jquery-1.11.1.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="impact/page/js/jquery-ui-1.10.2.custom.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="game/page/game-base.js" charset="utf-8"></script>
+<script>
+  var IG_GAME_SCALE = 2;
+  var IG_GAME_CACHE = "";
+  var IG_ROOT = "";
+  var IG_WIDTH = 568;
+  var IG_HEIGHT = 320;
+  var IG_HIDE_DEBUG = false;
+  var IG_SCREEN_MODE_OVERRIDE = 2;
+  var IG_WEB_AUDIO_BGM = false;
+  var IG_FORCE_HTML5_AUDIO = false;
+  var LOAD_LEVEL_ON_GAME_START = null;
+</script>
+<script>
+  var IG_GAME_DEBUG = false;
+  var IG_GAME_BETA  = false;
+</script>
+<script type="text/javascript" src="js/game.compiled.js"></script>
+<script type="text/javascript" src="impact/page/js/options.js" charset="utf-8"></script>
+
+</head>
+<body style="overflow: hidden">
+
+
+<div id="options" class="toggleMenu" style="display: none" >
+    <a class="trigger" ><span>Options</span></a>
+    <ul class="optionList"></ul>
+</div>
+
+
+<div id="game" >
+    <canvas id="canvas"></canvas>
+</div>
+
+<script type="text/javascript">
+    // make sure we don't let node-webkit show it's error page
+    // TODO for release mode, there should be an option to write to a file or something.
+    /*window['process'].once('uncaughtException', function() {
+        var win = require('nw.gui').Window.get();
+        if(!(win.isDevToolsOpen && win.isDevToolsOpen())) {
+            win.showDevTools && win.showDevTools();
+        }
+    });*/
+
+    function doStartCrossCodePlz(){
+      if(window.startCrossCode){
+        $(".playOptions").fadeIn(200);
+        startCrossCode();
+      }
+      else{
+        window.setTimeout(doStartCrossCodePlz, 100);
+      }
+    }
+
+    window.onload = doStartCrossCodePlz;
+</script>
+
+</body>
+</html>
+
+
