@@ -1,0 +1,1 @@
+{"DOCTYPE":"MULTI_DIR_ANIMATION","namedSheets":{"move1":{"src":"media\/entity\/npc\/pet-goat.png","xCount":7,"offX":0,"offY":0,"width":40,"height":40}},"SUB":[{"sheet":"move1","dirs":"6","flipX":[0,0,0,1,1,1],"tileOffsets":[0,7,14,14,7,0],"SUB":[{"name":"idle","time":0.15,"repeat":true,"frames":[0,1,2]},{"name":"move","time":0.1,"repeat":true,"frames":[3,4,5,6]}]}]}
