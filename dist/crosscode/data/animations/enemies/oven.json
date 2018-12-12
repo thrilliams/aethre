@@ -1,0 +1,1 @@
+{"DOCTYPE":"MULTI_DIR_ANIMATION","namedSheets":{"static":{"src":"media\/entity\/enemy\/aircon-oven.png","xCount":1,"offX":0,"offY":0,"width":32,"height":48}},"shapeType":"Y_FLAT","offset":{"x":0,"y":0,"z":0},"SUB":[{"sheet":"static","dirs":"1","flipX":[0],"tileOffsets":[0],"SUB":[{"name":"idle","time":0.3,"repeat":true,"frames":[0]}]}]}

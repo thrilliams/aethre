@@ -1,0 +1,1 @@
+{"DOCTYPE":"MULTI_DIR_ANIMATION","namedSheets":{"move":{"src":"media\/entity\/enemy\/easy-bot.png","offX":376,"offY":0,"width":16,"height":16}},"sheet":"move","SUB":[{"name":"idle","dirs":"1","flipX":[0],"tileOffsets":[0],"time":1,"frames":[0]},{"name":"damage","dirs":"1","flipX":[0,1],"tileOffsets":[0,0],"time":1,"frames":[0]}]}

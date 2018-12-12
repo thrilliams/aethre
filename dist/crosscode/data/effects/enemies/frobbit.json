@@ -1,0 +1,1 @@
+{"DOCTYPE":"EFFECT","ANIMS":{"namedSheets":null,"SUB":[{"sheet":{"src":"media\/entity\/effects\/hit2.png","offX":0,"offY":80,"width":32,"height":32},"name":"snow","time":0.06,"frames":[0,1,2,3,4,5]}]},"EFFECTS":{"snowBurst":[{"radius":8,"numParticles":3,"duration":0.1,"offset":{"x":0,"y":32,"z":32},"anim":"snow","type":"PLAY_ANIM_RANGE"}]}}
