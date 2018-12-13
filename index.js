@@ -12,7 +12,7 @@ var app = express()
 // routing
 crosscode.use(express.static('dist/crosscode'))
 
-app.use(subdomain('crosscode', crosscode))
+// app.use(subdomain('crosscode', crosscode))
 
 app.get('/', (req, res) => {
   var sub = req.subdomains.reverse().join('.')
