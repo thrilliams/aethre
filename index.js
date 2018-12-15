@@ -3,16 +3,19 @@ var express = require('express')
 var subdomain = require('express-subdomain')
 
 // subdomains
-var crosscode = express.Router()
+var nrdb = express.Router()
+var emu = express.Router()
 
 // app
 var app = express()
 
-
 // routing
-crosscode.use(express.static('dist/crosscode'))
+nrdb.use(express.static('dist/netrunner'))
+app.use(subdomain('netrunner', nrdb))
 
-// app.use(subdomain('crosscode', crosscode))
+emu.use(express.static('dist/emu'))
+app.use(subdomain('emu', emu))
+
 
 app.get('/', (req, res) => {
   var sub = req.subdomains.reverse().join('.')
