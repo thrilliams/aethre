@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="bootstrap.css">
+  <style>
+    .main-wrapper {
+      height: 100vh;
+      overflow: hidden
+    }
+
+    .navbar {
+      height: 60px
+    }
+
+    iframe {
+      width: 100%;
+      height: calc(100% - 60px)
+    }
+  </style>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="jquery.js"></script>
+  <script src="popper.js"></script>
+  <script src="bootstrap.js"></script>
+  <title>Emulation Station</title>
+</head>
+
+<body class="main-wrapper">
+  <script>
+    var change = _ => {
+      $('iframe').attr('src', 'emulators/' + $('select').val())
+    }
+  </script>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">Emulation Station</a>
+    <form class="form-inline my-2 my-lg-0">
+      <select class="form-control input-small mr-sm-2" onchange="change()">
+        <option value="gba">Game Boy Advance</option>
+        <option value="nes">Nintendo (only supports SMB3 right now)</option>
+        <option value="n64">Nintendo 64</option>
+      </select>
+    </form>
+  </nav>
+  <iframe frameborder="0" src="emulators/gba">
+</body>
+
+</html>

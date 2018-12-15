@@ -1,0 +1,359 @@
+<meta content="text/html; charset=utf-8"http-equiv=Content-Type><script>function showDropdownList(){document.getElementById("myDropdown").classList.toggle("show")}window.onclick=function(o){if(!o.target.matches(".dropbtn")){var t,n=document.getElementsByClassName("dropdown-content");for(t=0;t<n.length;t++){var s=n[t];s.classList.contains("show")&&s.classList.remove("show")}}}</script><script>var colors,step=0,colorIndices=[0,1,2,3],gradientSpeed=.01;function updateGradient(){if(void 0!==this.$&&null!==this.$){var o=colors[colorIndices[0]],r=colors[colorIndices[1]],a=colors[colorIndices[2]],n=colors[colorIndices[3]],t=1-step,d="rgb("+Math.round(t*o[0]+step*r[0])+","+Math.round(t*o[1]+step*r[1])+","+Math.round(t*o[2]+step*r[2])+")",e="rgb("+Math.round(t*a[0]+step*n[0])+","+Math.round(t*a[1]+step*n[1])+","+Math.round(t*a[2]+step*n[2])+")";$("#gradient").css({background:"-webkit-gradient(linear, left top, right top, from("+d+"), to("+e+"))"}).css({background:"-moz-linear-gradient(left, "+d+" 0%, "+e+" 100%)"}),1<=(step+=gradientSpeed)&&(step%=1,colorIndices[0]=colorIndices[1],colorIndices[2]=colorIndices[3],colorIndices[1]=(colorIndices[1]+Math.floor(1+Math.random()*(colors.length-1)))%colors.length,colorIndices[3]=(colorIndices[3]+Math.floor(1+Math.random()*(colors.length-1)))%colors.length)}}var gradientBackgroundInterval=null;function stopGradientBackground(){clearInterval(gradientBackgroundInterval),gradientBackgroundInterval=null}function startGradientBackground(){null==gradientBackgroundInterval&&(colors=new Array([192*Math.random(),192*Math.random(),192*Math.random()],[192*Math.random(),192*Math.random(),192*Math.random()],[192*Math.random(),192*Math.random(),192*Math.random()],[192*Math.random(),192*Math.random(),192*Math.random()],[192*Math.random(),192*Math.random(),192*Math.random()],[192*Math.random(),192*Math.random(),192*Math.random()]),gradientBackgroundInterval=setInterval(updateGradient,30))}</script><link href=style.css rel=stylesheet><title>1964 and 1964js Home page</title><meta content="1964js - N64 emulator in JavaScript"property=og:title><meta content=game property=og:type><meta content=http://www.1964js.com property=og:url><meta content=https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/373029_274941852620356_1206208449_n.jpg property=og:image><meta content=1964js property=og:site_name><meta content=1397141558 property=fb:admins><body alink=#ff0000 bgcolor=#000000 link=#D8D8D8 onload=start1964({wireframe:!0}) onunload=i1964js.stopEmulatorAndCleanup() text=#ffffff vlink=#D8D8D8><div id=fb-root></div><script>window.fbAsyncInit=function(){FB.init({appId:"518018268224773",channelUrl:"//www.1964js.com/channel.html",status:!0,cookie:!0,xfbml:!0})},function(e){var n,t="facebook-jssdk",c=e.getElementsByTagName("script")[0];e.getElementById(t)||((n=e.createElement("script")).id=t,n.async=!0,n.src="//connect.facebook.net/en_US/all.js",c.parentNode.insertBefore(n,c))}(document),function(e,n,t){var c,o=e.getElementsByTagName(n)[0];e.getElementById(t)||((c=e.createElement(n)).id=t,c.src="//connect.facebook.net/en_US/all.js#xfbml=1&appId=518018268224773",o.parentNode.insertBefore(c,o))}(document,"script","facebook-jssdk")</script><p></p><script id=vertex-shader type=x-shader/x-vertex>attribute vec4 aVertexPosition;
+      attribute vec4 aVertexColor;
+      attribute vec2 aTextureCoord;
+      uniform mat4 uMVMatrix;
+      uniform mat4 uPMatrix;
+
+      varying lowp vec4 vColor;
+      varying vec2 vTextureCoord;
+
+      void main(void) {
+        gl_Position = uPMatrix * uMVMatrix * aVertexPosition;
+        vColor = aVertexColor;
+        vTextureCoord = aTextureCoord;
+      }</script><script id=fragment-shader type=x-shader/x-fragment>precision mediump float;
+      varying lowp vec4 vColor;
+      varying mediump vec2 vTextureCoord;
+      uniform sampler2D uSampler;
+
+      uniform int cycleType;
+      //uniform int otherModeL, otherModeH;
+      uniform int uCombineA0, uCombineB0, uCombineC0, uCombineD0;
+      uniform int uCombineA0a, uCombineB0a, uCombineC0a, uCombineD0a;
+      uniform int uCombineA1, uCombineB1, uCombineC1, uCombineD1;
+      uniform int uCombineA1a, uCombineB1a, uCombineC1a, uCombineD1a;
+      uniform int uAlphaTestEnabled;
+      uniform vec4 uPrimColor, uFillColor, uEnvColor, uBlendColor;
+      vec4 green = vec4(0.0, 1.0, 0.0, 1.0);
+      vec4 a0, b0, c0, d0;
+      vec4 a1, b1, c1, d1;
+      vec4 tex2d;
+
+      int combined=0;
+      int tex0=1;
+      int tex1=2;
+      int prim=3;
+      int shade=4;
+      int env=5;
+
+      void main(void)
+      {
+         if (cycleType == 3)
+         {
+           gl_FragColor = uFillColor;
+         }
+         else if (cycleType == 2)
+         {
+           gl_FragColor = texture2D(uSampler, vec2(vTextureCoord.st));
+         }
+         else
+         {
+
+           tex2d = texture2D(uSampler, vec2(vTextureCoord.st));
+           a0 = b0 = c0 = d0 = vec4(1.0, 1.0, 1.0, 0.0);
+           if (uCombineA0 == tex0)
+             a0.rgb = tex2d.rgb;
+           if (uCombineA0a == tex0)
+             a0.a = tex2d.a;
+           if (uCombineB0 == tex0)
+             b0.rgb = tex2d.rgb;
+           if (uCombineB0a == tex0)
+             b0.a = tex2d.a;
+           if (uCombineC0 == tex0)
+             c0.rgb = tex2d.rgb;
+           if (uCombineC0a == tex0)
+             c0.a = tex2d.a;
+           if (uCombineD0 == tex0)
+             d0.rgb = tex2d.rgb;
+           if (uCombineD0a == tex0)
+             d0.a = tex2d.a;
+
+           if (uCombineA0 == tex1)
+             a0.rgb = tex2d.rgb;
+           if (uCombineA0a == tex1)
+             a0.a = tex2d.a;
+           if (uCombineB0 == tex1)
+             b0.rgb = tex2d.rgb;
+           if (uCombineB0a == tex1)
+             b0.a = tex2d.a;
+           if (uCombineC0 == tex1)
+             c0.rgb = tex2d.rgb;
+           if (uCombineC0a == tex1)
+             c0.a = tex2d.a;
+           if (uCombineD0 == tex1)
+             d0.rgb = tex2d.rgb;
+           if (uCombineD0a == tex1)
+             d0.a = tex2d.a;
+
+           if (uCombineA0 == prim)
+             a0.rgb = uPrimColor.rgb;
+           if (uCombineA0a == prim)
+             a0.a = uPrimColor.a;
+           if (uCombineB0 == prim)
+             b0.rgb = uPrimColor.rgb;
+           if (uCombineB0a == prim)
+             b0.a = uPrimColor.a;
+           if (uCombineC0 == prim)
+             c0.rgb = uPrimColor.rgb;
+           if (uCombineC0a == prim)
+             c0.a = uPrimColor.a;
+           if (uCombineD0 == prim)
+             d0.rgb = uPrimColor.rgb;
+           if (uCombineD0a == prim)
+             d0.a = uPrimColor.a;
+
+           if (uCombineA0 == shade)
+             a0.rgb = vColor.rgb;
+           if (uCombineA0a == shade)
+             a0.a = vColor.a;
+           if (uCombineB0 == shade)
+             b0.rgb = vColor.rgb;
+           if (uCombineB0a == shade)
+             b0.a = vColor.a;
+           if (uCombineC0 == shade)
+             c0.rgb = vColor.rgb;
+           if (uCombineC0a == shade)
+             c0.a = vColor.a;
+           if (uCombineD0 == shade)
+             d0.rgb = vColor.rgb;
+           if (uCombineD0a == shade)
+             d0.a = vColor.a;
+
+           if (uCombineA0 == env)
+             a0.rgb = uEnvColor.rgb;
+           if (uCombineA0a == env)
+             a0.a = uEnvColor.a;
+           if (uCombineB0 == env)
+             b0.rgb = uEnvColor.rgb;
+           if (uCombineB0a == env)
+             b0.a = uEnvColor.a;
+           if (uCombineC0 == env)
+             c0.rgb = uEnvColor.rgb;
+           if (uCombineC0a == env)
+             c0.a = uEnvColor.a;
+           if (uCombineD0 == env)
+             d0.rgb = uEnvColor.rgb;
+           if (uCombineD0a == env)
+             d0.a = uEnvColor.a;
+
+           // alpha combiner
+           if (uCombineC0a == 8)
+             c0.a = tex2d.a;
+           if (uCombineC0a == 9)
+             c0.a = tex2d.a;
+           if (uCombineC0a == 10)
+             c0.a = uPrimColor.a;
+           if (uCombineC0a == 11)
+             c0.a = vColor.a;
+           if (uCombineC0a == 12)
+             c0.a = uEnvColor.a;
+
+           // convert k4
+           //if (uCombineB0 == 7)
+           //  b0.rgb = uPrimColor.rgb;
+           //if (uCombineB0a == 7)
+           //  b0.a = uPrimColor.a;
+
+           // convert k5
+           //if (uCombineC0 == 15)
+           //  c0.rgb = uPrimColor.rgb;
+           //if (uCombineC0a == 15)
+           //  c0.a = uPrimColor.a;
+
+           if (uCombineA0 == 6)
+             a0.rgb = vec3(1.0, 1.0, 1.0);
+           if (uCombineA0a == 6)
+             a0.a = 1.0;
+           if (uCombineD0 == 6)
+             d0.rgb = vec3(1.0, 1.0, 1.0);
+           if (uCombineD0a == 6)
+             d0.a = 1.0;
+           if (uCombineD0 == 7)
+             d0.rgb = vec3(0.0, 0.0, 0.0);
+           if (uCombineD0a == 7)
+             d0.a = 0.0;
+
+           if (uCombineA0 >= 8 && uCombineA0 <= 15)
+             a0.rgb = vec3(0.0, 0.0, 0.0);
+           if (uCombineA0a >= 8 && uCombineA0a <= 15)
+             a0.a = 0.0;
+           if (uCombineB0 >= 8 && uCombineB0 <= 15)
+             b0.rgb = vec3(0.0, 0.0, 0.0);
+           if (uCombineB0a >= 8 && uCombineB0a <= 15)
+             b0.a = 0.0;
+           if (uCombineC0 >= 16 && uCombineC0 <= 31)
+             c0.rgb = vec3(0.0, 0.0, 0.0);
+           if (uCombineC0a >= 16 && uCombineC0a <= 31)
+             c0.a = 0.0;
+
+           //vec4 combined = (a0-b0) * c0 + d0;
+
+           gl_FragColor = (a0-b0) * c0 + d0;
+           // if (uAlphaTestEnabled == 1 && gl_FragColor.a < uBlendColor.a)
+           //   discard;
+
+           if (cycleType == 1) //2-cycle
+           {
+             a1 = b1 = c1 = d1 = vec4(1.0, 1.0, 1.0, 0.0);
+
+             if (uCombineA1 == combined)
+               a1.rgb = gl_FragColor.rgb;
+             if (uCombineA1a == combined)
+               a1.a = gl_FragColor.a;
+             if (uCombineB1 == combined)
+               b1.rgb = gl_FragColor.rgb;
+             if (uCombineB1a == combined)
+               b1.a = gl_FragColor.a;
+             if (uCombineC1 == combined)
+               c1.rgb = gl_FragColor.rgb;
+             if (uCombineC1a == combined)
+               c1.a = gl_FragColor.a;
+             if (uCombineD1 == combined)
+               d1.rgb = gl_FragColor.rgb;
+             if (uCombineD1a == combined)
+               d1.a = gl_FragColor.a;
+
+             if (uCombineA1 == tex0)
+               a1.rgb = tex2d.rgb;
+             if (uCombineA1a == tex0)
+               a1.a = tex2d.a;
+             if (uCombineB1 == tex0)
+               b1.rgb = tex2d.rgb;
+             if (uCombineB1a == tex0)
+               b1.a = tex2d.a;
+             if (uCombineC1 == tex0)
+               c1.rgb = tex2d.rgb;
+             if (uCombineC1a == tex0)
+               c1.a = tex2d.a;
+             if (uCombineD1 == tex0)
+               d1.rgb = tex2d.rgb;
+             if (uCombineD1a == tex0)
+               d1.a = tex2d.a;
+
+             if (uCombineA1 == tex1)
+               a1.rgb = tex2d.rgb;
+             if (uCombineA1a == tex1)
+               a1.a = tex2d.a;
+             if (uCombineB1 == tex1)
+               b1.rgb = tex2d.rgb;
+             if (uCombineB1a == tex1)
+               b1.a = tex2d.a;
+             if (uCombineC1 == tex1)
+               c1.rgb = tex2d.rgb;
+             if (uCombineC1a == tex1)
+               c1.a = tex2d.a;
+             if (uCombineD1 == tex1)
+               d1.rgb = tex2d.rgb;
+             if (uCombineD1a == tex1)
+               d1.a = tex2d.a;
+
+             if (uCombineA1 == prim)
+               a1.rgb = uPrimColor.rgb;
+             if (uCombineA1a == prim)
+               a1.a = uPrimColor.a;
+             if (uCombineB1 == prim)
+               b1.rgb = uPrimColor.rgb;
+             if (uCombineB1a == prim)
+               b1.a = uPrimColor.a;
+             if (uCombineC1 == prim)
+               c1.rgb = uPrimColor.rgb;
+             if (uCombineC1a == prim)
+               c1.a = uPrimColor.a;
+             if (uCombineD1 == prim)
+               d1.rgb = uPrimColor.rgb;
+             if (uCombineD1a == prim)
+               d1.a = uPrimColor.a;
+
+             if (uCombineA1 == shade)
+               a1.rgb = vColor.rgb;
+             if (uCombineA1a == shade)
+               a1.a = vColor.a;
+             if (uCombineB1 == shade)
+               b1.rgb = vColor.rgb;
+             if (uCombineB1a == shade)
+               b1.a = vColor.a;
+             if (uCombineC1 == shade)
+               c1.rgb = vColor.rgb;
+             if (uCombineC1a == shade)
+               c1.a = vColor.a;
+             if (uCombineD1 == shade)
+               d1.rgb = vColor.rgb;
+             if (uCombineD1a == shade)
+               d1.a = vColor.a;
+
+             if (uCombineA1 == env)
+               a1.rgb = uEnvColor.rgb;
+             if (uCombineA1a == env)
+               a1.a = uEnvColor.a;
+             if (uCombineB1 == env)
+               b1.rgb = uEnvColor.rgb;
+             if (uCombineB1a == env)
+               b1.a = uEnvColor.a;
+             if (uCombineC1 == env)
+               c1.rgb = uEnvColor.rgb;
+             if (uCombineC1a == env)
+               c1.a = uEnvColor.a;
+             if (uCombineD1 == env)
+               d1.rgb = uEnvColor.rgb;
+             if (uCombineD1a == env)
+               d1.a = uEnvColor.a;
+
+             // alpha combiner
+             if (uCombineC1a == 7)
+               c1.a = gl_FragColor.a;
+             if (uCombineC1a == 8)
+               c1.a = tex2d.a;
+             if (uCombineC1a == 9)
+               c1.a = tex2d.a;
+             if (uCombineC1a == 10)
+               c1.a = uPrimColor.a;
+             if (uCombineC1a == 11)
+               c1.a = vColor.a;
+             if (uCombineC1a == 12)
+               c1.a = uEnvColor.a;
+
+             // convert k4
+             //if (uCombineB1 == 7)
+             //  b1.rgb = uPrimColor.rgb;
+             //if (uCombineB1a == 7)
+             //  b1.a = uPrimColor.a;
+
+             // convert k5
+             //if (uCombineC1 == 15)
+             //  c1.rgb = uPrimColor.rgb;
+             //if (uCombineC1a == 15)
+             //  c1.a = uPrimColor.a;
+
+             if (uCombineA1 == 6)
+               a1.rgb = vec3(1.0, 1.0, 1.0);
+             if (uCombineA1a == 6)
+               a1.a = 1.0;
+             if (uCombineD1 == 6)
+               d1.rgb = vec3(1.0, 1.0, 1.0);
+             if (uCombineD1a == 6)
+               d1.a = 1.0;
+             if (uCombineD1 == 7)
+               d1.rgb = vec3(0.0, 0.0, 0.0);
+             if (uCombineD1a == 7)
+               d1.a = 0.0;
+
+             if (uCombineA1 >= 8 && uCombineA1 <= 15)
+               a1.rgb = vec3(0.0, 0.0, 0.0);
+             if (uCombineA1a >= 8 && uCombineA1a <= 15)
+               a1.a = 0.0;
+             if (uCombineB1 >= 8 && uCombineB1 <= 15)
+               b1.rgb = vec3(0.0, 0.0, 0.0);
+             if (uCombineB1a >= 8 && uCombineB1a <= 15)
+               b1.a = 0.0;
+             if (uCombineC1 >= 16 && uCombineC1 <= 31)
+               c1.rgb = vec3(0.0, 0.0, 0.0);
+             if (uCombineC1a >= 16 && uCombineC1a <= 31)
+               c1.a = 0.0;
+
+           gl_FragColor = (a1-b1) * c1 + d1;
+           //  gl_FragColor.a = 0.5;
+           //  if (uAlphaTestEnabled == 1 && gl_FragColor.a < uBlendColor.a)
+           //    discard;
+           }
+         }
+       }</script><canvas height=240 id=Canvas width=320></canvas><canvas height=1024 id=Canvas3D width=1024></canvas><div id=user_panel><div id=gradient><span class=header><a href=http://1964emu.emulation64.com>Get 1964 for Windows</a>   <a href=http://1964js.com/blog/index.html>Blog</a>   <a href=http://www.github.com/schibo/1964js>Code</a>   <a href=http://hulkholden.github.com/n64js/ >Try n64js too!</a></span><p style=font-size:130%>1964js <span style=font-size:10px;font-size:40%>v0.4.9</span><p><div><div class=dropdown><button class=dropbtn onclick=showDropdownList()>Demos</button><div id=myDropdown class=dropdown-content><a href="index-rom=roms-unofficial-rotate.zip.html">Rotate</a><a href="index-rom=roms-unofficial-chrome.zip.html">Chrome</a><a href="index-rom=roms-unofficial-dextrose.zip.html">Dextrose</a><a href="index-rom=roms-unofficial-n64stars.zip.html">N64 Stars</a><a href="index-rom=roms-unofficial-liner.zip.html">Liner</a><a href="index-rom=roms-unofficial-hardcode.zip.html">Hard Coded</a><a href="index-rom=roms-unofficial-sp_crap.zip.html">Absolute Crap</a></div></div></div><div><br><center><div class=dropbtn style=position:relative;overflow:hidden;direction:ltr;background-color:#4caf50;width:10vw;font-size:1.5vw><div style=display:block;text-align:center>Load ROM</div><input id=files type=file onclick="this.value=null"class=file name=file></div><span style=font-size:10px;font-size:50%><br>Supports Super Mario 64<br></span></center></div><p style=margin-top:2%><input id=stretch type=checkbox>stretch  <input id=speedlimit type=checkbox onclick=i1964js.onSpeedLimitChanged() checked>speed limit<p></p><a href=https://www.google.com/chrome/ style=font-align:left>Best with Chrome</a></div></div><script src=lib/jquery.min.js></script><script src=lib/1964js-0.4.9.min.js></script>
