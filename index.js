@@ -17,9 +17,6 @@ app.use(subdomain('netrunner', nrdb))
 emu.use(express.static('dist/emu'))
 app.use(subdomain('emu', emu))
 
-bypass.use(express.static('dist/hedit'))
-app.use(subdomain('hedit', bypass))
-
 
 app.get('/', (req, res) => {
   var sub = req.subdomains.reverse().join('.')
