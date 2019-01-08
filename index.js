@@ -5,6 +5,7 @@ var subdomain = require('express-subdomain')
 // subdomains
 var nrdb = express.Router()
 var emu = express.Router()
+var bypass = express.Router()
 
 // app
 var app = express()
@@ -15,6 +16,9 @@ app.use(subdomain('netrunner', nrdb))
 
 emu.use(express.static('dist/emu'))
 app.use(subdomain('emu', emu))
+
+emu.use(express.static('dist/hedit'))
+app.use(subdomain('hedit', bypass))
 
 
 app.get('/', (req, res) => {
