@@ -17,7 +17,7 @@ app.use(subdomain('netrunner', nrdb))
 emu.use(express.static('dist/emu'))
 app.use(subdomain('emu', emu))
 
-emu.use(express.static('dist/hedit'))
+bypass.use(express.static('dist/hedit'))
 app.use(subdomain('hedit', bypass))
 
 
