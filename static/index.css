@@ -75,6 +75,19 @@ a::after {
 	padding: 30px;
 }
 
+#article>div>span.x {
+	float: right;
+	margin: 0px;
+	line-height: 0px;
+	border: 3px solid;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+#article>div>span.x::before {
+	content: 'X';
+}
+
 #footer {
 	border-top: 3px solid;
 	height: 50px;
