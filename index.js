@@ -1,28 +1,25 @@
-// packages
 var express = require('express')
-var subdomain = require('express-subdomain')
-
-// subdomains
-var nrdb = express.Router()
-var emu = express.Router()
-var bypass = express.Router()
-
-// app
+var marked = require('marked')
+var fs = require('fs')
 var app = express()
 
-// routing
-nrdb.use(express.static('dist/netrunner'))
-app.use(subdomain('netrunner', nrdb))
+app.use('/static', express.static('static'))
+app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'))
 
-emu.use(express.static('dist/emu'))
-app.use(subdomain('emu', emu))
+app.get('/pages', (req, res) => {
+	fs.readdir('pages', (err, items) => {
+		if (err) {
+            res.status(500).end(err)
+            return console.log(err)
+        }
 
-
-app.get('/', (req, res) => {
-  var sub = req.subdomains.reverse().join('.')
-  console.log(sub)
-  res.sendFile(__dirname + '/dist/index.html')
+        res.json(items)
+	})
 })
 
-// listen
+app.get('/pages/*', (req, res) => {
+    res.end(marked(fs.readFileSync(req.url.slice(1), 'utf8')))
+})
+
+console.log(`Listening on port ${process.env.PORT || 8080}`)
 app.listen(process.env.PORT || 8080)

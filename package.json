@@ -5,11 +5,12 @@
   "main": "index.js",
   "dependencies": {
     "express": "^4.16.4",
-    "express-subdomain": "^1.0.5"
+    "marked": "^0.6.2"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "devs": "forever -w index.js"
   },
   "keywords": [],
   "author": "",
