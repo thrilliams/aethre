@@ -77,7 +77,7 @@ a::after {
 
 #footer {
 	border-top: 3px solid;
-	height: 10vh;
-	line-height: 10vh;
+	height: 50px;
+	line-height: 50px;
 	text-align: center;
 }
