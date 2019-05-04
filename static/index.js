@@ -18,9 +18,11 @@ $.ajax({
 							$('#article').html('')
 							$('#content').removeClass('hidden')
 							$('#article').addClass('hidden')
+							window.scrollTo(0, 0)
 						})
 						$('#article').removeClass('hidden')
 						$('#content').addClass('hidden')
+						window.scrollTo(0, 0)
 					})
 				}
 			})
