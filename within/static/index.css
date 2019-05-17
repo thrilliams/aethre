@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Space+Mono');
+
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	font-family: 'Noto Sans';
+}
+
+#content {
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto minmax(100px, 10vh);
+}
+
+.messages {
+	overflow: scroll;
+	display: flex;
+	flex-direction: column;
+	padding: 0 10px 10px 10px;
+}
+
+.messages::before {
+	flex-grow: 1;
+	content: ' ';
+}
+
+.messages > div {
+	margin-top: 10px;
+	display: grid;
+	grid-column-gap: 10px;
+	grid-template-columns: minmax(150px, 10vw) auto;
+}
+
+.send {
+	display: grid;
+	padding: 0 10px 10px 10px;
+	grid-column-gap: 10px;
+	grid-template-columns: auto minmax(200px, 20vw);
+}
+
+.send > input, .send > button {
+	padding: 10px;
+	font-size: 20px;
+	border: 2px solid;
+	border-radius: 3px;
+	font-family: 'Noto Sans';
+}
+
+:focus {
+	outline: none;
+}
