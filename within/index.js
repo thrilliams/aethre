@@ -1,6 +1,6 @@
 function main(io) {
 	const express = require('express')
-	const app = express()
+	const app = express.Router()
 	let messages = []
 
 	app.use('/', express.static('static'))
