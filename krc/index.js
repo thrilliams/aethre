@@ -1,9 +1,9 @@
-function main(io) {
+module.exports = io => {
 	const express = require('express')
 	const app = express.Router()
 	let messages = []
 
-	app.use('/', express.static('static'))
+	app.use('/', express.static('krc/static'))
 
 	io.on('connection', socket => {
 		for (let m of messages) {
@@ -20,5 +20,3 @@ function main(io) {
 
 	return app
 }
-
-module.exports = main
