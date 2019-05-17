@@ -3,7 +3,7 @@ module.exports = io => {
 	const app = express.Router()
 	let messages = []
 
-	app.use('/', express.static('krc/static'))
+	app.use('/', express.static(__dirname + '/krc/static'))
 
 	io.on('connection', socket => {
 		for (let m of messages) {
