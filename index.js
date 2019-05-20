@@ -3,9 +3,9 @@ var express = require('express')
 var marked = require('marked')
 var fs = require('fs')
 var app = express()
-var io = require('socket.io')(app.listen(process.env.PORT || 8080))
+// var io = require('socket.io')()
 
-app.use(subdomain('krc', require('./within/index.js')(io)))
+// app.use(subdomain('krc', require('./within/index.js')(io)))
 
 app.use('/static', express.static('static'))
 app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'))
@@ -26,3 +26,4 @@ app.get('/pages/*', (req, res) => {
 })
 
 console.log(`Listening on port ${process.env.PORT || 8080}`)
+app.listen(process.env.PORT || 8080)
