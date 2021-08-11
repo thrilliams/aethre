@@ -25,5 +25,5 @@ app.get('/pages/*', (req, res) => {
     res.end(marked(fs.readFileSync(req.url.slice(1), 'utf8')));
 });
 
-console.log(`Listening on port ${process.env.PORT || 8080}`)
-app.listen(process.env.PORT || 8080)
+console.log(`Listening on port ${process.env.PORT || 8080}`);
+app.listen(process.env.PORT || 8080);
