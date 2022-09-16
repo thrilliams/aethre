@@ -1,0 +1,13 @@
+.projectsPage {
+	.controls {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+
+		.prev {
+			grid-column: 1;
+		}
+		.next {
+			grid-column: 3;
+		}
+	}
+}
