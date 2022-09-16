@@ -1,7 +1,7 @@
 import { graphql, PageProps } from 'gatsby';
 import * as React from 'react';
 import { GiRollingEnergy } from 'react-icons/gi';
-import { HeaderAndFooter } from '../components/headerAndFooter';
+import { HeaderAndFooter } from '../components/navbarAndFooter';
 import { Content, RichText } from '../components/richText';
 import { head } from '../lib/head';
 import * as styles from './page.module.scss';
@@ -10,11 +10,15 @@ interface PageContext {
 	slug: string;
 }
 
-export default function Page({ data, pageContext }: PageProps<Queries.PageQuery, PageContext>) {
+export default function Page({
+	data,
+	pageContext,
+	location
+}: PageProps<Queries.PageQuery, PageContext>) {
 	const apiContent = data.contentfulPage?.content as unknown as Content;
 
 	return (
-		<HeaderAndFooter header={pageContext.slug !== 'index'}>
+		<HeaderAndFooter header={pageContext.slug !== 'index'} location={location}>
 			<div className={pageContext.slug === 'index' ? styles.splash : ''}>
 				<main>
 					{pageContext.slug === 'index' ? (

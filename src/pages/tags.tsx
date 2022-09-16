@@ -1,11 +1,11 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, PageProps, useStaticQuery } from 'gatsby';
 import { TagThumbnail } from '../components/tagThumbnail';
 import { head } from '../lib/head';
-import { HeaderAndFooter } from '../components/headerAndFooter';
+import { HeaderAndFooter } from '../components/navbarAndFooter';
 import { LinkHelper } from '../components/linkHelper';
 
-export default function Tags() {
+export default function Tags({ location }: PageProps) {
 	const data: Queries.AllTagsQuery = useStaticQuery(graphql`
 		query AllTags {
 			allContentfulTag {
@@ -19,7 +19,7 @@ export default function Tags() {
 	`);
 
 	return (
-		<HeaderAndFooter>
+		<HeaderAndFooter location={location}>
 			<main>
 				<h1>Tags</h1>
 				<p>

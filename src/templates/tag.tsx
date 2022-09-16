@@ -2,15 +2,15 @@ import React from 'react';
 import { graphql, HeadProps, PageProps } from 'gatsby';
 import { ProjectThumbnail } from '../components/projectThumbnail';
 import { head } from '../lib/head';
-import { HeaderAndFooter } from '../components/headerAndFooter';
+import { HeaderAndFooter } from '../components/navbarAndFooter';
 
 // TODO: tag inheritance
 
-export default function Tag({ data }: PageProps<Queries.ProjectsAndTagQuery>) {
+export default function Tag({ data, location }: PageProps<Queries.ProjectsAndTagQuery>) {
 	const tag = data.contentfulTag!;
 
 	return (
-		<HeaderAndFooter>
+		<HeaderAndFooter location={location}>
 			<main>
 				<h1>{tag.name}</h1>
 				<h3>{tag.description}</h3>

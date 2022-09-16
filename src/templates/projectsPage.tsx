@@ -6,7 +6,7 @@ import { head } from '../lib/head';
 import * as style from './projectsPage.module.scss';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { LinkHelper } from '../components/linkHelper';
-import { HeaderAndFooter } from '../components/headerAndFooter';
+import { HeaderAndFooter } from '../components/navbarAndFooter';
 
 interface PageContext {
 	skip: number;
@@ -15,12 +15,13 @@ interface PageContext {
 
 export default function Projects({
 	data,
-	pageContext
+	pageContext,
+	location
 }: PageProps<Queries.AllProjectsQuery, PageContext>) {
 	const prevPageExists = pageContext.skip > 0;
 	const nextPageExists = data.allContentfulProject.totalCount > pageContext.skip + 10;
 	return (
-		<HeaderAndFooter>
+		<HeaderAndFooter location={location}>
 			<main className={style.projectsPage}>
 				<h1>Projects{pageContext.slug !== 1 ? <>, page {pageContext.slug}</> : null}</h1>
 				<p>

@@ -3,9 +3,11 @@ import { LinkHelper } from './linkHelper';
 import { GiRollingEnergy } from 'react-icons/gi';
 
 import * as styles from './navbar.module.scss';
+import { PageProps } from 'gatsby';
 
-const PathBreakdown = () => {
-	const loc = new URL(location.href);
+type LocationProp = Pick<PageProps, 'location'>;
+
+const PathBreakdown = ({ location }: LocationProp) => {
 	const links: JSX.Element[] = [];
 	links.push(
 		<LinkHelper href="/">
@@ -13,8 +15,8 @@ const PathBreakdown = () => {
 			The Aethre
 		</LinkHelper>
 	);
-	if (loc.pathname !== '/') {
-		for (const part of loc.pathname.split('/').slice(1)) {
+	if (location.pathname !== '/') {
+		for (const part of location.pathname.split('/').slice(1)) {
 			const previous = links.at(-1)!;
 			const newUrl = `${previous.props.href}${part}/`;
 			links.push(<LinkHelper href={newUrl}>{part}</LinkHelper>);
@@ -36,10 +38,10 @@ const PathBreakdown = () => {
 	);
 };
 
-export const Navbar = () => (
+export const Navbar = ({ location }: LocationProp) => (
 	<div className={styles.navbar}>
 		<div>
-			<PathBreakdown />
+			<PathBreakdown location={location} />
 		</div>
 	</div>
 );
