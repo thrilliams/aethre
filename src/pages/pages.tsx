@@ -1,10 +1,10 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, PageProps, useStaticQuery } from 'gatsby';
 import { PageThumbnail } from '../components/pageThumbnail';
 import { head } from '../lib/head';
-import { HeaderAndFooter } from '../components/headerAndFooter';
+import { HeaderAndFooter } from '../components/navbarAndFooter';
 
-export default function Tags() {
+export default function Tags({ location }: PageProps) {
 	const data: Queries.AllPagesQuery = useStaticQuery(graphql`
 		query AllPages {
 			allContentfulPage {
@@ -17,7 +17,7 @@ export default function Tags() {
 	`);
 
 	return (
-		<HeaderAndFooter>
+		<HeaderAndFooter location={location}>
 			<main>
 				<h1>Pages</h1>
 				<div>

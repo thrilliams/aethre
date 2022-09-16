@@ -7,10 +7,10 @@ import { reformatDate } from '../lib/date';
 import { head } from '../lib/head';
 
 import * as styles from './project.module.scss';
-import { HeaderAndFooter } from '../components/headerAndFooter';
+import { HeaderAndFooter } from '../components/navbarAndFooter';
 import { Content, RichText } from '../components/richText';
 
-export default function Project({ data }: PageProps<Queries.ProjectQuery>) {
+export default function Project({ data, location }: PageProps<Queries.ProjectQuery>) {
 	const project = data.contentfulProject!;
 
 	// this is stupid
@@ -18,7 +18,7 @@ export default function Project({ data }: PageProps<Queries.ProjectQuery>) {
 	const apiContent = project.content as unknown as Content;
 
 	return (
-		<HeaderAndFooter>
+		<HeaderAndFooter location={location}>
 			<main className={styles.project}>
 				<h1>{project.title}</h1>
 				<h3>{reformatDate(project.date!)}</h3>

@@ -39,7 +39,6 @@ export const RichText = ({ data }: Props) => (
 					></DescriptiveImage>
 				),
 				[INLINES.EMBEDDED_ENTRY]: ({ data }) => {
-					console.log(data);
 					switch (data.target.__typename) {
 						case 'ContentfulTag':
 							return (
@@ -48,7 +47,6 @@ export const RichText = ({ data }: Props) => (
 								</LinkHelper>
 							);
 						case 'ContentfulProject':
-							console.log(data);
 							return (
 								<LinkHelper href={`/projects/${data.target.slug}`}>
 									{data.target.title}

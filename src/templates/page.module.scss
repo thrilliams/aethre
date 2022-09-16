@@ -61,13 +61,14 @@ $splash-height: 180px;
 		a {
 			background-color: #fff;
 			box-shadow: 0px 5px 7.5px #333;
+			transition: box-shadow 0.5s;
 
 			&:hover {
 				box-shadow: 0px 10px 15px #333;
 			}
 
 			* {
-				transition: all 0.5s;
+				transition: color 0.5s;
 				color: #000;
 				&:hover {
 					color: $c1;
