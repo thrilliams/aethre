@@ -1,0 +1,16 @@
+.headerAndFooter {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+
+	.content {
+		flex-grow: 1;
+		padding: 10px;
+		width: min(600px, 100vw);
+		margin: auto;
+	}
+
+	footer {
+		justify-self: flex-end;
+	}
+}

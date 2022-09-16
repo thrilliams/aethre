@@ -1,0 +1,55 @@
+@import '../styles/variables.scss';
+
+.navbar {
+	background-color: $c5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60px;
+
+	div {
+		max-width: 600px;
+		flex-grow: 1;
+		padding: 10px;
+
+		display: grid;
+		grid-auto-columns: 1fr;
+		grid-auto-flow: column;
+		gap: 10px;
+
+		a {
+			display: inline;
+			max-height: 40px;
+			color: $c1;
+			text-decoration: none;
+
+			&:hover {
+				color: $c4;
+			}
+		}
+
+		span {
+			display: flex;
+			align-items: center;
+
+			> * {
+				margin: 0 4px 0 4px;
+			}
+
+			> :first-child {
+				margin-left: 0;
+			}
+
+			a,
+			span {
+				font-weight: bold;
+				display: flex;
+				align-items: center;
+
+				svg {
+					margin-right: 5px;
+				}
+			}
+		}
+	}
+}

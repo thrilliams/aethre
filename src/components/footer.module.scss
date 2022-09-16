@@ -1,0 +1,31 @@
+@import '../styles/variables.scss';
+
+.footer {
+	background-color: $c5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	div {
+		padding: 10px;
+		display: grid;
+		grid-auto-columns: 1fr;
+		grid-auto-flow: column;
+		gap: 10px;
+
+		a {
+			display: inline;
+			max-height: 40px;
+
+			svg {
+				color: $c1;
+				margin: 0;
+				transition: color 0.5s;
+
+				&:hover {
+					color: $c4;
+				}
+			}
+		}
+	}
+}
