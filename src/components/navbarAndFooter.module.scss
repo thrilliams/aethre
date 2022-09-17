@@ -5,8 +5,12 @@
 
 	.content {
 		flex-grow: 1;
-		padding: 10px;
-		width: min(600px, 100vw);
+		padding: 15px;
+		// width: min(600px, 100vw);
+		@media (min-width: 640px) {
+			width: 600px;
+		}
+		max-width: 100vw;
 		margin: auto;
 	}
 
