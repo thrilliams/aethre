@@ -1,4 +1,4 @@
-import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+import { BLOCKS, INLINES, Text } from '@contentful/rich-text-types';
 import {
 	ContentfulRichTextGatsbyReference,
 	renderRichText,
@@ -68,6 +68,28 @@ export const RichText = ({ data }: Props) => (
 							return <ProjectThumbnail data={data.target} />;
 						case 'ContentfulPage':
 							return <PageThumbnail data={data.target} />;
+					}
+				},
+				[INLINES.ENTRY_HYPERLINK]: ({ data, content }) => {
+					switch (data.target.__typename) {
+						case 'ContentfulTag':
+							return (
+								<LinkHelper href={`/tags/${data.target.slug}`}>
+									{content.map((element) => (element as Text).value).join()}
+								</LinkHelper>
+							);
+						case 'ContentfulProject':
+							return (
+								<LinkHelper href={`/projects/${data.target.slug}`}>
+									{content.map((element) => (element as Text).value).join()}
+								</LinkHelper>
+							);
+						case 'ContentfulPage':
+							return (
+								<LinkHelper href={`/${data.target.slug}`}>
+									{content.map((element) => (element as Text).value).join()}
+								</LinkHelper>
+							);
 					}
 				}
 			}
