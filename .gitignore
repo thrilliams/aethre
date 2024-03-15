@@ -1,6 +1,8 @@
-node_modules/
-.cache/
-public
-src/gatsby-types.d.ts
-.env*
+node_modules
+
+/.cache
+/build
+/public/build
+.env
+
 .DS_Store

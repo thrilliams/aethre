@@ -1,7 +1,38 @@
-<h1 align="center">
-  The Aethre
-</h1>
+# Welcome to Remix!
 
-This is a Gatsby project written in TypeScript and uses SCSS and Contenful.
+-   [Remix Docs](https://remix.run/docs)
 
-The rolling energy icon was created by Lorc under CC BY 3.0, and is available on [game-icons.net](https://game-icons.net/1x1/lorc/rolling-energy.html).
+## Development
+
+From your terminal:
+
+```sh
+npm run dev
+```
+
+This starts your app in development mode, rebuilding assets on file changes.
+
+## Deployment
+
+First, build your app for production:
+
+```sh
+npm run build
+```
+
+Then run the app in production mode:
+
+```sh
+npm start
+```
+
+Now you'll need to pick a host to deploy it to.
+
+### DIY
+
+If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
+
+Make sure to deploy the output of `remix build`
+
+-   `build/`
+-   `public/build/`
