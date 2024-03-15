@@ -1,0 +1,94 @@
+generator client {
+    provider = "prisma-client-js"
+    // previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Project {
+    id String @id @default(uuid()) @db.Uuid
+
+    // meta information
+    title String  @db.VarChar(64)
+    slug  String? @unique @db.VarChar(64)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+
+    author   User   @relation(fields: [authorId], references: [id])
+    authorId String @db.Uuid
+
+    // implicit many-to-many relation
+    tags Tag[]
+
+    // if false, this project will not be served to public-facing pages
+    published Boolean @default(false)
+
+    // a markdown string that will probably only ever be plain text and links
+    // (i might want to add images later)
+    content String
+
+    // a link to somewhere people can look at the thing proper, if applicable
+    sourceUrl  String?
+    // if defined, will dictate special behavior for the above the link
+    // (e.g. github will show an icon or something)
+    sourceType SourceType @default(NONE)
+
+    // a brief description of the article contents (plaintext, not markdown)
+    summary String @db.Char(256)
+
+    // a pithy description in the form of "hi! i'm [name]\ni [splash] and [another random splash]"
+    // if omitted, will never be chosen to display
+    splash String? @db.Char(64)
+}
+
+enum SourceType {
+    NONE
+    GITHUB
+}
+
+model Tag {
+    id String @id @default(uuid()) @db.Uuid
+
+    slug String @unique
+    name String
+
+    // implicit many-to-many relation
+    projects Project[]
+
+    parent   Tag?    @relation("inheritance", fields: [parentId], references: [id])
+    parentId String? @db.Uuid
+    children Tag[]   @relation("inheritance")
+}
+
+model User {
+    id    String @id @default(uuid()) @db.Uuid
+    email String @unique
+    name  String
+
+    projects Project[]
+
+    auth Authentication?
+}
+
+// we keep passwords in a different table from users so that it's harder to accidentally show the
+// password hash to the user
+model Authentication {
+    user   User   @relation(fields: [userId], references: [id])
+    userId String @id @unique @db.Uuid
+
+    // this isn't really a string, it's just a sequence of bytes with an arbitrary length
+    // i think it makes more sense to store this as a string than it does to finagle psql types
+    passwordHash String
+}
+
+// despite having an expire time and there being some handling code to address that, these are
+// almost never deleted automatically. they are cleaned up daily by a cron job
+model Session {
+    id       String    @id @default(uuid()) @db.Uuid
+    dataJson String
+    expires  DateTime?
+}
